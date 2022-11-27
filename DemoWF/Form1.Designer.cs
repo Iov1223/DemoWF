@@ -29,54 +29,42 @@
         private void InitializeComponent()
         {
             this.richTextBoxContent = new System.Windows.Forms.RichTextBox();
-            this.buttonLeft = new System.Windows.Forms.Button();
-            this.buttonRight = new System.Windows.Forms.Button();
+            this.buttonFormat = new System.Windows.Forms.Button();
             this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.labelCurrentDoc = new System.Windows.Forms.Label();
             this.buttonSaveAs = new System.Windows.Forms.Button();
-            this.moveButtons = new System.Windows.Forms.NumericUpDown();
             this.comboBoxColor = new System.Windows.Forms.ComboBox();
-            this.comboStile = new System.Windows.Forms.ComboBox();
+            this.comboStyle = new System.Windows.Forms.ComboBox();
             this.comboOutline = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.moveButtons)).BeginInit();
+            this.comboBoxSize = new System.Windows.Forms.ComboBox();
+            this.buttonTime = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBoxContent
             // 
             this.richTextBoxContent.Location = new System.Drawing.Point(15, 25);
-            this.richTextBoxContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBoxContent.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxContent.Name = "richTextBoxContent";
-            this.richTextBoxContent.Size = new System.Drawing.Size(960, 461);
+            this.richTextBoxContent.Size = new System.Drawing.Size(933, 461);
             this.richTextBoxContent.TabIndex = 0;
             this.richTextBoxContent.Text = "";
             // 
-            // buttonLeft
+            // buttonFormat
             // 
-            this.buttonLeft.Location = new System.Drawing.Point(15, 612);
-            this.buttonLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.buttonLeft.Name = "buttonLeft";
-            this.buttonLeft.Size = new System.Drawing.Size(100, 28);
-            this.buttonLeft.TabIndex = 1;
-            this.buttonLeft.Text = "Влево";
-            this.buttonLeft.UseVisualStyleBackColor = true;
-            this.buttonLeft.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonLeft_MouseClick);
-            // 
-            // buttonRight
-            // 
-            this.buttonRight.Location = new System.Drawing.Point(168, 612);
-            this.buttonRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.buttonRight.Name = "buttonRight";
-            this.buttonRight.Size = new System.Drawing.Size(100, 28);
-            this.buttonRight.TabIndex = 1;
-            this.buttonRight.Text = "Вправо";
-            this.buttonRight.UseVisualStyleBackColor = true;
-            this.buttonRight.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonRight_MouseClick);
+            this.buttonFormat.Location = new System.Drawing.Point(98, 612);
+            this.buttonFormat.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonFormat.Name = "buttonFormat";
+            this.buttonFormat.Size = new System.Drawing.Size(145, 28);
+            this.buttonFormat.TabIndex = 1;
+            this.buttonFormat.Text = "Форматировать";
+            this.buttonFormat.UseVisualStyleBackColor = true;
+            this.buttonFormat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonFormat_MouseClick);
             // 
             // buttonOpen
             // 
             this.buttonOpen.Location = new System.Drawing.Point(316, 612);
-            this.buttonOpen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonOpen.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOpen.Name = "buttonOpen";
             this.buttonOpen.Size = new System.Drawing.Size(100, 28);
             this.buttonOpen.TabIndex = 1;
@@ -87,7 +75,7 @@
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(473, 612);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(100, 28);
             this.buttonSave.TabIndex = 1;
@@ -108,22 +96,13 @@
             // buttonSaveAs
             // 
             this.buttonSaveAs.Location = new System.Drawing.Point(611, 612);
-            this.buttonSaveAs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSaveAs.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSaveAs.Name = "buttonSaveAs";
             this.buttonSaveAs.Size = new System.Drawing.Size(145, 28);
             this.buttonSaveAs.TabIndex = 1;
             this.buttonSaveAs.Text = "Сохранить как...";
             this.buttonSaveAs.UseVisualStyleBackColor = true;
             this.buttonSaveAs.Click += new System.EventHandler(this.buttonSaveAs_Click);
-            // 
-            // moveButtons
-            // 
-            this.moveButtons.Location = new System.Drawing.Point(788, 615);
-            this.moveButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.moveButtons.Name = "moveButtons";
-            this.moveButtons.Size = new System.Drawing.Size(160, 22);
-            this.moveButtons.TabIndex = 3;
-            this.moveButtons.ValueChanged += new System.EventHandler(this.moveButtons_ValueChanged);
             // 
             // comboBoxColor
             // 
@@ -133,27 +112,27 @@
             "Зеленый",
             "Синий",
             "Чёрный"});
-            this.comboBoxColor.Location = new System.Drawing.Point(972, 25);
-            this.comboBoxColor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxColor.Location = new System.Drawing.Point(942, 153);
+            this.comboBoxColor.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxColor.Name = "comboBoxColor";
-            this.comboBoxColor.Size = new System.Drawing.Size(105, 24);
+            this.comboBoxColor.Size = new System.Drawing.Size(136, 24);
             this.comboBoxColor.TabIndex = 4;
             this.comboBoxColor.Text = "Цвет";
             this.comboBoxColor.SelectedValueChanged += new System.EventHandler(this.comboBoxColor_SelectedValueChanged);
             // 
-            // comboStile
+            // comboStyle
             // 
-            this.comboStile.FormattingEnabled = true;
-            this.comboStile.Items.AddRange(new object[] {
-            "Microsoft Sans Serif",
-            "Microsoft Yi Baiti",
-            "MingLiU_HKSCS-ExtB"});
-            this.comboStile.Location = new System.Drawing.Point(972, 65);
-            this.comboStile.Name = "comboStile";
-            this.comboStile.Size = new System.Drawing.Size(105, 24);
-            this.comboStile.TabIndex = 5;
-            this.comboStile.Text = "Стиль";
-            this.comboStile.SelectedIndexChanged += new System.EventHandler(this.comboStile_SelectedIndexChanged);
+            this.comboStyle.FormattingEnabled = true;
+            this.comboStyle.Items.AddRange(new object[] {
+            "Arial",
+            "Times New Roman",
+            "Comic Sans MS"});
+            this.comboStyle.Location = new System.Drawing.Point(941, 25);
+            this.comboStyle.Name = "comboStyle";
+            this.comboStyle.Size = new System.Drawing.Size(137, 24);
+            this.comboStyle.TabIndex = 5;
+            this.comboStyle.Text = "Шрифт";
+            this.comboStyle.SelectedIndexChanged += new System.EventHandler(this.comboStyle_SelectedIndexChanged);
             // 
             // comboOutline
             // 
@@ -163,35 +142,62 @@
             "наклонный",
             "полужирный",
             "перечёркнутый"});
-            this.comboOutline.Location = new System.Drawing.Point(972, 114);
+            this.comboOutline.Location = new System.Drawing.Point(941, 65);
             this.comboOutline.Name = "comboOutline";
-            this.comboOutline.Size = new System.Drawing.Size(105, 24);
+            this.comboOutline.Size = new System.Drawing.Size(137, 24);
             this.comboOutline.TabIndex = 6;
             this.comboOutline.Text = "Начертание";
             this.comboOutline.SelectedIndexChanged += new System.EventHandler(this.comboOutline_SelectedIndexChanged);
+            // 
+            // comboBoxSize
+            // 
+            this.comboBoxSize.FormattingEnabled = true;
+            this.comboBoxSize.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.comboBoxSize.Location = new System.Drawing.Point(942, 107);
+            this.comboBoxSize.Name = "comboBoxSize";
+            this.comboBoxSize.Size = new System.Drawing.Size(136, 24);
+            this.comboBoxSize.TabIndex = 7;
+            this.comboBoxSize.Text = "Размер";
+            this.comboBoxSize.SelectedIndexChanged += new System.EventHandler(this.comboBoxSize_SelectedIndexChanged);
+            // 
+            // buttonTime
+            // 
+            this.buttonTime.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonTime.Location = new System.Drawing.Point(942, 204);
+            this.buttonTime.Name = "buttonTime";
+            this.buttonTime.Size = new System.Drawing.Size(136, 38);
+            this.buttonTime.TabIndex = 8;
+            this.buttonTime.Text = "Вставить время";
+            this.buttonTime.UseVisualStyleBackColor = true;
+            this.buttonTime.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonTime_MouseClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 642);
+            this.Controls.Add(this.buttonTime);
+            this.Controls.Add(this.comboBoxSize);
             this.Controls.Add(this.comboOutline);
-            this.Controls.Add(this.comboStile);
+            this.Controls.Add(this.comboStyle);
             this.Controls.Add(this.comboBoxColor);
-            this.Controls.Add(this.moveButtons);
             this.Controls.Add(this.labelCurrentDoc);
             this.Controls.Add(this.buttonSaveAs);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonOpen);
-            this.Controls.Add(this.buttonRight);
-            this.Controls.Add(this.buttonLeft);
+            this.Controls.Add(this.buttonFormat);
             this.Controls.Add(this.richTextBoxContent);
             this.Location = new System.Drawing.Point(100, 100);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Работа с текстом";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.moveButtons)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,16 +206,16 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox richTextBoxContent;
-        private System.Windows.Forms.Button buttonLeft;
-        private System.Windows.Forms.Button buttonRight;
+        private System.Windows.Forms.Button buttonFormat;
         private System.Windows.Forms.Button buttonOpen;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label labelCurrentDoc;
         private System.Windows.Forms.Button buttonSaveAs;
-        private System.Windows.Forms.NumericUpDown moveButtons;
         private System.Windows.Forms.ComboBox comboBoxColor;
-        private System.Windows.Forms.ComboBox comboStile;
+        private System.Windows.Forms.ComboBox comboStyle;
         private System.Windows.Forms.ComboBox comboOutline;
+        private System.Windows.Forms.ComboBox comboBoxSize;
+        private System.Windows.Forms.Button buttonTime;
     }
 }
 

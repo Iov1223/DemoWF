@@ -18,8 +18,7 @@ namespace DemoWF
         }
         public static string Browse()
         {
-            var openFile = new OpenFileDialog();
-            //OpenFileDialog openFile = new OpenFileDialog();
+            OpenFileDialog openFile = new OpenFileDialog();
             openFile.InitialDirectory = myDoc();
             openFile.Filter = "rtf files (*.rtf)|*.rtf";
             DialogResult result = openFile.ShowDialog();
@@ -31,7 +30,7 @@ namespace DemoWF
         }
         public static string SaveAs()
         {
-            var saveAsFile = new SaveFileDialog();
+            SaveFileDialog saveAsFile = new SaveFileDialog();
             saveAsFile.InitialDirectory = myDoc();
             saveAsFile.Filter = "rtf files (*.rtf)|*.rtf";
             DialogResult result = saveAsFile.ShowDialog();
