@@ -11,11 +11,10 @@ namespace DemoWF
 {
     public partial class Form1 : Form
     {
-        private Form formFormatText = new Form();
+
         public Form1()
         {
             InitializeComponent();
-            
         }
         private void alignButtons(Size _size, int _left = 0)
         {
@@ -31,6 +30,8 @@ namespace DemoWF
             location.X += buttonSave.Width;
             buttonSaveAs.Location = location;
             location.X += buttonSaveAs.Width;
+            buttonUndo.Location = location;
+            location.X += buttonUndo.Width;
         }
         private Size SetSize()
         {
@@ -39,55 +40,105 @@ namespace DemoWF
             var width = (MSize.Width / 3) * 2;
             Size size = new Size(width, height);
             richTextBoxContent.Size = size;
-            size.Height += 100; 
-            size.Width += 100; 
+            size.Height += 100;
+            size.Width += 38;
             this.MaximumSize = this.MinimumSize = size;
             return size;
         }
+        private Control[] CreateElements()
+        {
+            Control[] elements = new Control[5];
+            ComboBox comboBoxStyle = new ComboBox();
+            comboBoxStyle.Text = "Шрифт";
+            comboBoxStyle.Items.Add("Arial");
+            comboBoxStyle.Items.Add("Times New Roman");
+            comboBoxStyle.Items.Add("Comic Sans MS");
+            comboBoxStyle.SelectedIndexChanged += comboStyle_SelectedIndexChanged;
+            elements[0] = comboBoxStyle;
+
+            ComboBox comboBoxOutline = new ComboBox();
+            comboBoxOutline.Text = "Начертание";
+            comboBoxOutline.Items.Add("обычный");
+            comboBoxOutline.Items.Add("наклонный");
+            comboBoxOutline.Items.Add("полужирный");
+            comboBoxOutline.Items.Add("перечёркнутый");
+            comboBoxOutline.SelectedIndexChanged += comboOutline_SelectedIndexChanged;
+            elements[1] = comboBoxOutline;
+
+            ComboBox comboBoxSise = new ComboBox();
+            comboBoxSise.Text = "Размер";
+            comboBoxSise.Items.Add("8");
+            comboBoxSise.Items.Add("9");
+            comboBoxSise.Items.Add("10");
+            comboBoxSise.Items.Add("11");
+            comboBoxSise.Items.Add("12");
+            comboBoxSise.SelectedIndexChanged += comboBoxSize_SelectedIndexChanged;
+            elements[2] = comboBoxSise;
+
+            ComboBox comboBoxColor = new ComboBox();
+            comboBoxColor.Text = "Цвет";
+            comboBoxColor.Items.Add("Красный");
+            comboBoxColor.Items.Add("Зелёный");
+            comboBoxColor.Items.Add("Синий");
+            comboBoxColor.Items.Add("Чёрный");
+            comboBoxColor.SelectedValueChanged += comboBoxColor_SelectedValueChanged;
+            elements[3] = comboBoxColor;
+
+            Button buttonTime = new Button();
+            buttonTime.Text = "Вставить время";
+            buttonTime.Size = new Size(122, 22);
+            buttonTime.MouseClick += buttonTime_MouseClick;
+            elements[4] = buttonTime;
+
+            return elements;
+        }
+
         private void AddElement()
         {
+            Form formFormatText = new Form();
+            Control[] elements = CreateElements();
             formFormatText.Text = "Окно форматирования";
 
-            Point locationS = comboStyle.Location;
-            formFormatText.Controls.Add(comboStyle);
+            Point locationS = elements[0].Location;
+            formFormatText.Controls.Add(elements[0]);
             locationS.X = 5;
             locationS.Y = 5;
-            comboStyle.Location = locationS;
+            elements[0].Location = locationS;
 
-            Point locationO = comboOutline.Location;
-            formFormatText.Controls.Add(comboOutline);
+            Point locationO = elements[1].Location;
+            formFormatText.Controls.Add(elements[1]);
             locationO.X = 5;
             locationO.Y = 50;
-            comboOutline.Location = locationO;
+            elements[1].Location = locationO;
 
-            Point locationB = comboBoxSize.Location;
-            formFormatText.Controls.Add(comboBoxSize);
+            Point locationB = elements[2].Location;
+            formFormatText.Controls.Add(elements[2]);
             locationB.X = 5;
             locationB.Y = 95;
-            comboBoxSize.Location = locationB;
+            elements[2].Location = locationB;
 
-            Point locationC = comboBoxColor.Location;
-            formFormatText.Controls.Add(comboBoxColor);
+            Point locationC = elements[3].Location;
+            formFormatText.Controls.Add(elements[3]);
             locationC.X = 5;
             locationC.Y = 140;
-            comboBoxColor.Location = locationC;
+            elements[3].Location = locationC;
 
-            Point locationT = buttonTime.Location;
-            formFormatText.Controls.Add(buttonTime);
+            Point locationT = elements[4].Location;
+            formFormatText.Controls.Add(elements[4]);
             locationT.X = 5;
             locationT.Y = 185;
-            buttonTime.Location = locationT;
+            elements[4].Location = locationT;
 
             Size min, max;  
             SetSizeForm(out min, out max);
             formFormatText.MaximumSize = min;
             formFormatText.MinimumSize = max;
-            
+            formFormatText.Show();
         }
         private void SetSizeForm(out Size min, out Size max)
         {
             var MSize = SystemInformation.PrimaryMonitorMaximizedWindowSize;
-            var formFormatText = new Form();
+            Form formFormatText = new Form();
             formFormatText.MaximumSize = new Size(MSize.Width / 6, MSize.Height / 3);
             formFormatText.MinimumSize = new Size(MSize.Width / 6, MSize.Height / 3);
             min = formFormatText.MinimumSize;
@@ -141,7 +192,6 @@ namespace DemoWF
         private void buttonFormat_MouseClick(object sender, MouseEventArgs e)
         {
             AddElement();
-            formFormatText.Show();
         }
 
         private void comboBoxColor_SelectedValueChanged(object sender, EventArgs e)
@@ -151,7 +201,7 @@ namespace DemoWF
                 case "Красный":
                     richTextBoxContent.SelectionColor = Color.Red;
                     break;
-                case "Зеленый":
+                case "Зелёный":
                     richTextBoxContent.SelectionColor = Color.Green;
                     break;
                 case "Синий":
@@ -166,8 +216,10 @@ namespace DemoWF
         }
         private void comboStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string Style = e.ToString();
+            MessageBox.Show(Style);
             var _sizeFont = richTextBoxContent.SelectionFont.Size;
-            switch (comboStyle.SelectedItem.ToString())
+            switch (Style)
             {
                 case "Arial":
                     richTextBoxContent.SelectionFont = new Font("Arial", _sizeFont);
@@ -228,6 +280,7 @@ namespace DemoWF
                     break;
             }
         }
+        
 
         private void buttonTime_MouseClick(object sender, MouseEventArgs e)
         {
@@ -235,6 +288,10 @@ namespace DemoWF
             string time = dt.ToString("dd.MM.yyyy HH:mm:ss");
             richTextBoxContent.SelectedText = time;
         }
-      
+
+        private void buttonUndo_MouseClick(object sender, MouseEventArgs e)
+        {
+            richTextBoxContent.Undo();
+        }
     }
 }
