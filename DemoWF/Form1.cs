@@ -49,6 +49,8 @@ namespace DemoWF
         {
             Control[] elements = new Control[5];
             ComboBox comboBoxStyle = new ComboBox();
+            /*В шрифте нет switch и событие срабатывает, меняется шрифт на выбранный по умолчанию
+             сделал так для демонстрации*/
             comboBoxStyle.Text = "Шрифт";
             comboBoxStyle.Items.Add("Arial");
             comboBoxStyle.Items.Add("Times New Roman");
@@ -57,6 +59,8 @@ namespace DemoWF
             elements[0] = comboBoxStyle;
 
             ComboBox comboBoxOutline = new ComboBox();
+            /*В остальных ComboBox switch присутствует и событие не срабатывает,
+             требует ссылку на объект*/
             comboBoxOutline.Text = "Начертание";
             comboBoxOutline.Items.Add("обычный");
             comboBoxOutline.Items.Add("наклонный");
@@ -83,7 +87,7 @@ namespace DemoWF
             comboBoxColor.Items.Add("Чёрный");
             comboBoxColor.SelectedValueChanged += comboBoxColor_SelectedValueChanged;
             elements[3] = comboBoxColor;
-
+            /*C кнопкой тоже всё предельно просто, всё работает*/
             Button buttonTime = new Button();
             buttonTime.Text = "Вставить время";
             buttonTime.Size = new Size(122, 22);
@@ -215,24 +219,24 @@ namespace DemoWF
             }
         }
         private void comboStyle_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string Style = e.ToString();
-            MessageBox.Show(Style);
-            var _sizeFont = richTextBoxContent.SelectionFont.Size;
-            switch (Style)
-            {
-                case "Arial":
-                    richTextBoxContent.SelectionFont = new Font("Arial", _sizeFont);
-                    break;
-                case "Times New Roman":
-                    richTextBoxContent.SelectionFont = new Font("Times New Roman", _sizeFont);
-                    break;
-                case "Comic Sans MS":
-                    richTextBoxContent.SelectionFont = new Font("Comic Sans MS", _sizeFont);
-                    break;
-                default:
-                    break;
-            }
+        {var _sizeFont = richTextBoxContent.SelectionFont.Size;
+          
+            richTextBoxContent.SelectionFont = new Font("Comic Sans MS", _sizeFont);
+            //
+            //switch (comboStyle.SelectedItem.ToString();)
+            //{
+            //    case "Arial":
+            //        richTextBoxContent.SelectionFont = new Font("Arial", _sizeFont);
+            //        break;
+            //    case "Times New Roman":
+            //        richTextBoxContent.SelectionFont = new Font("Times New Roman", _sizeFont);
+            //        break;
+            //    case "Comic Sans MS":
+            //        richTextBoxContent.SelectionFont = new Font("Comic Sans MS", _sizeFont);
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
         private void comboOutline_SelectedIndexChanged(object sender, EventArgs e)
