@@ -16,6 +16,11 @@ namespace DemoWF
         {
             InitializeComponent();
         }
+        private ComboBox refTextStyle = new ComboBox();
+        private ComboBox refTextOutline = new ComboBox();
+        private ComboBox refTextSize = new ComboBox();
+        private ComboBox refTextColor = new ComboBox();
+       
         private void alignButtons(Size _size, int _left = 0)
         {
             int height = _size.Height, width = _size.Width;
@@ -49,23 +54,21 @@ namespace DemoWF
         {
             Control[] elements = new Control[5];
             ComboBox comboBoxStyle = new ComboBox();
-            /*В шрифте нет switch и событие срабатывает, меняется шрифт на выбранный по умолчанию
-             сделал так для демонстрации*/
             comboBoxStyle.Text = "Шрифт";
             comboBoxStyle.Items.Add("Arial");
             comboBoxStyle.Items.Add("Times New Roman");
             comboBoxStyle.Items.Add("Comic Sans MS");
+            refTextStyle = comboBoxStyle;
             comboBoxStyle.SelectedIndexChanged += comboStyle_SelectedIndexChanged;
             elements[0] = comboBoxStyle;
 
             ComboBox comboBoxOutline = new ComboBox();
-            /*В остальных ComboBox switch присутствует и событие не срабатывает,
-             требует ссылку на объект*/
             comboBoxOutline.Text = "Начертание";
             comboBoxOutline.Items.Add("обычный");
             comboBoxOutline.Items.Add("наклонный");
             comboBoxOutline.Items.Add("полужирный");
             comboBoxOutline.Items.Add("перечёркнутый");
+            refTextOutline = comboBoxOutline;
             comboBoxOutline.SelectedIndexChanged += comboOutline_SelectedIndexChanged;
             elements[1] = comboBoxOutline;
 
@@ -76,6 +79,7 @@ namespace DemoWF
             comboBoxSise.Items.Add("10");
             comboBoxSise.Items.Add("11");
             comboBoxSise.Items.Add("12");
+            refTextSize = comboBoxSise;
             comboBoxSise.SelectedIndexChanged += comboBoxSize_SelectedIndexChanged;
             elements[2] = comboBoxSise;
 
@@ -85,9 +89,10 @@ namespace DemoWF
             comboBoxColor.Items.Add("Зелёный");
             comboBoxColor.Items.Add("Синий");
             comboBoxColor.Items.Add("Чёрный");
+            refTextColor = comboBoxColor;
             comboBoxColor.SelectedValueChanged += comboBoxColor_SelectedValueChanged;
             elements[3] = comboBoxColor;
-            /*C кнопкой тоже всё предельно просто, всё работает*/
+
             Button buttonTime = new Button();
             buttonTime.Text = "Вставить время";
             buttonTime.Size = new Size(122, 22);
@@ -200,7 +205,7 @@ namespace DemoWF
 
         private void comboBoxColor_SelectedValueChanged(object sender, EventArgs e)
         {
-            switch (comboBoxColor.SelectedItem.ToString())
+            switch (refTextColor.SelectedItem.ToString())
             {
                 case "Красный":
                     richTextBoxContent.SelectionColor = Color.Red;
@@ -219,30 +224,28 @@ namespace DemoWF
             }
         }
         private void comboStyle_SelectedIndexChanged(object sender, EventArgs e)
-        {var _sizeFont = richTextBoxContent.SelectionFont.Size;
-          
-            richTextBoxContent.SelectionFont = new Font("Comic Sans MS", _sizeFont);
-            //
-            //switch (comboStyle.SelectedItem.ToString();)
-            //{
-            //    case "Arial":
-            //        richTextBoxContent.SelectionFont = new Font("Arial", _sizeFont);
-            //        break;
-            //    case "Times New Roman":
-            //        richTextBoxContent.SelectionFont = new Font("Times New Roman", _sizeFont);
-            //        break;
-            //    case "Comic Sans MS":
-            //        richTextBoxContent.SelectionFont = new Font("Comic Sans MS", _sizeFont);
-            //        break;
-            //    default:
-            //        break;
-            //}
+        { 
+            var _sizeFont = richTextBoxContent.SelectionFont.Size;
+            switch (refTextStyle.SelectedItem.ToString())
+            {
+                case "Arial":
+                    richTextBoxContent.SelectionFont = new Font("Arial", _sizeFont);
+                break;
+                case "Times New Roman":
+                    richTextBoxContent.SelectionFont = new Font("Times New Roman", _sizeFont);
+                break;
+                case "Comic Sans MS":
+                    richTextBoxContent.SelectionFont = new Font("Comic Sans MS", _sizeFont);
+                break;
+                default:
+                    break;
+            }
         }
 
         private void comboOutline_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            switch (comboOutline.SelectedItem.ToString())
+            switch (refTextOutline.SelectedItem.ToString())
             {
                 case "обычный":
                     richTextBoxContent.SelectionFont = new Font(richTextBoxContent.SelectionFont, FontStyle.Regular);
@@ -263,7 +266,7 @@ namespace DemoWF
         private void comboBoxSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             var _styleFont = richTextBoxContent.SelectionFont.FontFamily;
-            switch (comboBoxSize.SelectedItem.ToString())
+            switch (refTextSize.SelectedItem.ToString())
             {
                 case "8":
                     richTextBoxContent.SelectionFont = new Font(_styleFont, 8);
